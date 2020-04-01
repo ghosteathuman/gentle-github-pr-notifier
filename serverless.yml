@@ -1,0 +1,25 @@
+service: 
+  name: gentle-github-pr-notifier
+
+provider:
+  name: aws
+  region: ${opt:region, env:AWS_REGION, env:AWS_DEFAULT_REGION, self:custom.defaultRegion}
+  runtime: ruby2.7
+  stage: ${opt:stage, 'development'}
+  environment:
+    SERVICE_NAME: ${self:service}
+    STAGE: ${self:provider.stage}
+    TWILIO_ACCOUNT_SID: ${opt:twilioAccountSid}
+    TWILIO_AUTH_TOKEN: ${opt:twilioAuthToken}
+    TWILIO_FROM_NO: ${opt:twilioFromNo}
+
+custom:
+  defaultRegion: 'us-west-2'
+
+functions:
+  webhook:
+    handler: handler.webhook
+    events:
+      - http:
+          method: post
+          path: /webhook
