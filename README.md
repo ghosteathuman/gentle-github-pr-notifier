@@ -16,6 +16,3 @@ Gives a call whenever there is a Pull Request in GitHub requesting for review.
 1. Run `$ sls deploy --twilioAccountSid=<twilio account sid> --twilioAuthToken=<twilio auth token> --twilioFromNo=<twilio number to call from>`
 
 Note that `--region` defaults to `us-west-2` unless overridden.
-
-## Issues / TODO:
-- The initial `ping` webhook that GitHub sends is not processed correctly and returns a 5XX error.
