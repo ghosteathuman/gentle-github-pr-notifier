@@ -3,7 +3,8 @@ require 'net/http'
 
 def webhook(event:, context:)
   event_body_json = JSON.parse(event['body'])
-  puts 'GitHub Pull Request Event: ' + event_body_json['action']
+  event_body_json['action'] ? log = event_body_json['action'] : log = event_body_json['hook']
+  puts log
   if event_body_json['action'] == 'review_requested'
 
     phone_book = {
