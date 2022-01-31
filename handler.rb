@@ -9,6 +9,8 @@ def webhook(event:, context:)
 
     phone_book = {
       # 'github-username' => 'phone number'
+      # Example
+      # 'ghosteathuman' => '+0123456789'
     }
 
     requested_reviewers = event_body_json['pull_request']['requested_reviewers']
